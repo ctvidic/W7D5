@@ -43,5 +43,15 @@ class User < ApplicationRecord
         self.session_token = User.generate_session_token
         self.save!
         self.session_token
-    end 
+    end
+    
+    has_many :subs_moderated,
+        class_name: 'Sub',
+        foreign_key: :moderator_id,
+        primary_key: :id
+
+    has_many :posts,
+        class_name: 'Post',
+        foreign_key: :author_id,
+        primary_key: :id
 end 
